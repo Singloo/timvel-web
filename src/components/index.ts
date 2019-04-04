@@ -4,10 +4,11 @@
  * Created Date: Thursday April 4th 2019
  * Author: Rick yang tongxue(🍔🍔) (origami@timvel.com)
  * -----
- * Last Modified: Thursday April 4th 2019 9:46:39 am
+ * Last Modified: Thursday April 4th 2019 11:14:56 am
  * Modified By: Rick yang tongxue(🍔🍔) (origami@timvel.com)
  * -----
  */
-import Button from '@material-ui/core/Button';
+import Button from 'antd/lib/button';
+import 'antd/lib/button/style/css'
 
 export { Button };

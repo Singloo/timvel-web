@@ -4,7 +4,7 @@
  * Created Date: Wednesday April 3rd 2019
  * Author: Rick yang tongxue(🍔🍔) (origami@timvel.com)
  * -----
- * Last Modified: Thursday April 4th 2019 10:07:52 am
+ * Last Modified: Thursday April 4th 2019 11:15:33 am
  * Modified By: Rick yang tongxue(🍔🍔) (origami@timvel.com)
  * -----
  */
@@ -73,14 +73,12 @@ class HomePage extends React.Component {
     return (
       <div>
         <Button
-          size={'small'}
           onClick={() => this._goToUrl('https://blog.timvel.com')}
           style={styles.button}
         >
           Blog
         </Button>
         <Button
-          size={'small'}
           onClick={() =>
             this._goToUrl(
               'https://timvel-downloads.oss-cn-hangzhou.aliyuncs.com/timvel-latest.apk',
@@ -123,7 +121,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   button: {
     backgroundColor: 'transparent',
     color: 'white',
-    borderColor: 'white',
+    border:0
   },
   topContainer: {
     position: 'absolute',
