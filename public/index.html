@@ -7,6 +7,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
+    <meta name="keywords" content="timvel,Timvel,回溯,杨同学,rick,tongxue" />
     <meta name="theme-color" content="#000000" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -22,10 +23,11 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Timvel</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <canvas id="canvas" width="1365" height="88" style='position: fixed;'></canvas>
     <div id="root"></div>
     <!--
       This HTML file is a template.
@@ -38,4 +40,101 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+  <script>
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    var w = canvas.width;
+    var h = canvas.height;
+
+    var part_count = 600;
+    var P = [];
+    var X, Y;
+    var angle = 0.01;
+    var centerX = w * 0.5,
+      centerY = h * 0.5;
+
+    var part = function(x, y, ix, iy, vx, vy, a, dist) {
+      this.x = x;
+      this.y = y;
+      this.ix = ix;
+      this.iy = iy;
+      this.vx = vx;
+      this.vy = vy;
+      this.a = a;
+      this.dist = dist;
+    };
+
+    function init() {
+      var x, y, ix, iy, vx, vy, a, dist;
+      for (var i = 0; i < part_count; i++) {
+        ix = x;
+        iy = y;
+        vx = random(-1, 1);
+        vy = random(-1, 1);
+        rand = random(-80, 100);
+        dist = part_count / 10 + i;
+        a = 1;
+
+        P.push(new part(x, y, ix, iy, vx, vy, a, dist));
+      }
+    }
+    init();
+
+    function bg() {
+      ctx.fillStyle = '#F8F8FF';
+      ctx.globalAlpha = 0.25;
+      ctx.fillRect(0, 0, canvas.width, canvas.height, 1);
+    }
+
+    function distance(dx, dy) {
+      return Math.sqrt(dx * dx + dy * dy);
+    }
+
+    function draw() {
+      for (var i = 0; i < P.length; i++) {
+        var p = P[i];
+
+        p.a += 0.008;
+        p.x = centerX + Math.cos(i + p.a) * (p.dist * i * 0.1);
+        p.y = centerY + Math.sin(i + p.a) * p.dist;
+        ctx.fillStyle = '#000000';
+        ctx.fillRect(p.x, p.y, 2, 2);
+      }
+    }
+
+    function loop() {
+      bg();
+      draw();
+      window.requestAnimationFrame(loop);
+    }
+    loop();
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      centerX = window.innerWidth * 0.5;
+      centerY = window.innerHeight * 0.5;
+    }
+
+    function random(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    window.onresize = resize;
+  </script>
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=UA-129908627-1"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-129908627-1');
+  </script>
 </html>

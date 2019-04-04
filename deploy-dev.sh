@@ -1,0 +1,1 @@
+rsync -avzP ./build/* root@timvel-hk-1:/apps/timvel-server/build
