@@ -4,7 +4,7 @@
  * Created Date: Wednesday April 3rd 2019
  * Author: Rick yang tongxue(🍔🍔) (origami@timvel.com)
  * -----
- * Last Modified: Tuesday April 30th 2019 10:19:01 am
+ * Last Modified: Tuesday April 30th 2019 10:39:00 am
  * Modified By: Rick yang tongxue(🍔🍔) (origami@timvel.com)
  * -----
  */
@@ -41,7 +41,7 @@ const INITIAL_TEXTS = [
   'The colors used to lure you in',
   'And put you in a trance',
 ];
-const precisionMap = (date: string, precision: string) => {
+const precisionMap = (date: string, precision: string): string => {
   switch (precision) {
     case 'day':
       return Moment(date).format('dddd, LL');
@@ -49,10 +49,12 @@ const precisionMap = (date: string, precision: string) => {
       return Moment(date).format('YYYY MMMM');
     case 'year':
       return Moment(date).format('YYYY');
+    default:
+      return '';
   }
 };
 const extractContent = (post: any) => {
-  return precisionMap(post.happenedAt, post.precision) + ' ' + post.content;
+  return precisionMap(post.happenedAt, post.precision) + ' - ' + post.content;
 };
 class HomePage extends React.Component<{}, IState> {
   songToPlay: string;
@@ -116,8 +118,6 @@ class HomePage extends React.Component<{}, IState> {
     const { texts, currentIndex } = this.state;
     const currentText = texts[currentIndex];
     const textStyle = {};
-    if (currentText.length > 20)
-      Object.assign(textStyle, { fontSize: '2.5em' });
     return (
       <div className={'container'}>
         <audio id={'audio'} src={this.songToPlay} autoPlay={true} />

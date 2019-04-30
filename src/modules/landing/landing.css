@@ -4,7 +4,7 @@
  * Created Date: Wednesday April 3rd 2019
  * Author: Rick yang tongxue(🍔🍔) (origami@timvel.com)
  * -----
- * Last Modified: Tuesday April 30th 2019 9:57:41 am
+ * Last Modified: Tuesday April 30th 2019 10:30:41 am
  * Modified By: Rick yang tongxue(🍔🍔) (origami@timvel.com)
  * -----
  */
@@ -27,12 +27,16 @@
   bottom: 50px;
   left: 0;
   right: 0;
-  align-self: auto;
+  align-self: center;
   text-align: center;
   font-size: 5em;
   font-weight: 100;
   animation: black-to-white infinite linear 10s;
   max-lines: 2;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 .logo_container {
   flex-direction: column;
