@@ -4,7 +4,7 @@
  * Created Date: Tuesday April 30th 2019
  * Author: Rick yang tongxue(🍔🍔) (origami@timvel.com)
  * -----
- * Last Modified: Tuesday April 30th 2019 3:07:21 pm
+ * Last Modified: Tuesday April 30th 2019 5:37:25 pm
  * Modified By: Rick yang tongxue(🍔🍔) (origami@timvel.com)
  * -----
  */
@@ -222,7 +222,7 @@ var Starfield = /** @class */ (function () {
         gui.add(this.settings, 'demo').listen();
     };
     Starfield.prototype.demo = function () {
-        var count = 1000;
+        var count = 100;
         var mod = (Date.now() / 1) % (count * 2);
         this.settings.count = 500 + (mod > count ? count * 2 - mod : mod);
         this.currentCount = this.settings.count;
@@ -279,7 +279,6 @@ var Starfield = /** @class */ (function () {
 var starfield = new Starfield();
 var draw = starfield.draw.bind(starfield);
 var demo = starfield.demo.bind(starfield);
-console.log(starfield);
 function run() {
     requestAnimationFrame(run);
     demo();
