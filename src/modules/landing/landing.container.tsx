@@ -4,7 +4,7 @@
  * Created Date: Wednesday April 3rd 2019
  * Author: Rick yang tongxue(🍔🍔) (origami@timvel.com)
  * -----
- * Last Modified: Tuesday April 30th 2019 10:49:38 am
+ * Last Modified: Tuesday April 30th 2019 10:53:44 am
  * Modified By: Rick yang tongxue(🍔🍔) (origami@timvel.com)
  * -----
  */
@@ -116,8 +116,7 @@ class HomePage extends React.Component<{}, IState> {
   };
   render() {
     const { texts, currentIndex } = this.state;
-    const currentText =
-      texts[currentIndex];
+    const currentText = texts[currentIndex].slice(0, 50);
     const textStyle = {};
     if (currentText.length > 35) {
       Object.assign(textStyle, {
