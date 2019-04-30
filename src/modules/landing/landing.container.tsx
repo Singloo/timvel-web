@@ -4,7 +4,7 @@
  * Created Date: Wednesday April 3rd 2019
  * Author: Rick yang tongxue(🍔🍔) (origami@timvel.com)
  * -----
- * Last Modified: Tuesday April 30th 2019 10:39:00 am
+ * Last Modified: Tuesday April 30th 2019 10:49:38 am
  * Modified By: Rick yang tongxue(🍔🍔) (origami@timvel.com)
  * -----
  */
@@ -116,8 +116,15 @@ class HomePage extends React.Component<{}, IState> {
   };
   render() {
     const { texts, currentIndex } = this.state;
-    const currentText = texts[currentIndex];
+    const currentText =
+      texts[currentIndex];
     const textStyle = {};
+    if (currentText.length > 35) {
+      Object.assign(textStyle, {
+        lineHeight: '5em',
+        fontSize: '2.5em',
+      });
+    }
     return (
       <div className={'container'}>
         <audio id={'audio'} src={this.songToPlay} autoPlay={true} />
@@ -128,7 +135,7 @@ class HomePage extends React.Component<{}, IState> {
         {this._renderLogo()}
 
         <h3 className="title" style={textStyle}>
-          {texts[currentIndex]}
+          {currentText}
         </h3>
         {this._renderLegality()}
       </div>
