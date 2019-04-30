@@ -915,14 +915,16 @@
 "@types/jest-diff@*":
   version "20.0.1"
   resolved "https://registry.npmjs.org/@types/jest-diff/-/jest-diff-20.0.1.tgz#35cc15b9c4f30a18ef21852e255fdb02f6d59b89"
+  integrity sha512-yALhelO3i0hqZwhjtcr6dYyaLoCHbAMshwtj6cGxTvHZAKXHsYGdff6E8EPw3xLKY0ELUTQ69Q1rQiJENnccMA==
 
-"@types/jest@24.0.11":
-  version "24.0.11"
-  resolved "https://registry.npmjs.org/@types/jest/-/jest-24.0.11.tgz#1f099bea332c228ea6505a88159bfa86a5858340"
+"@types/jest@^24.0.12":
+  version "24.0.12"
+  resolved "https://registry.npmjs.org/@types/jest/-/jest-24.0.12.tgz#0553dd0a5ac744e7dc4e8700da6d3baedbde3e8f"
+  integrity sha512-60sjqMhat7i7XntZckcSGV8iREJyXXI6yFHZkSZvCPUeOnEJ/VP1rU/WpEWQ56mvoh8NhC+sfKAuJRTyGtCOow==
   dependencies:
     "@types/jest-diff" "*"
 
-"@types/node@*", "@types/node@11.13.0":
+"@types/node@*":
   version "11.13.0"
   resolved "https://registry.npmjs.org/@types/node/-/node-11.13.0.tgz#b0df8d6ef9b5001b2be3a94d909ce3c29a80f9e1"
 
@@ -934,9 +936,10 @@
   version "1.5.2"
   resolved "https://registry.npmjs.org/@types/q/-/q-1.5.2.tgz#690a1475b84f2a884fd07cd797c00f5f31356ea8"
 
-"@types/react-dom@16.8.3":
-  version "16.8.3"
-  resolved "https://registry.npmjs.org/@types/react-dom/-/react-dom-16.8.3.tgz#6131b7b6158bc7ed1925a3374b88b7c00481f0cb"
+"@types/react-dom@^16.8.4":
+  version "16.8.4"
+  resolved "https://registry.npmjs.org/@types/react-dom/-/react-dom-16.8.4.tgz#7fb7ba368857c7aa0f4e4511c4710ca2c5a12a88"
+  integrity sha512-eIRpEW73DCzPIMaNBDP5pPIpK1KXyZwNgfxiVagb5iGiz6da+9A5hslSX6GAQKdO7SayVCS/Fr2kjqprgAvkfA==
   dependencies:
     "@types/react" "*"
 
@@ -947,9 +950,17 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@16.8.10":
+"@types/react@*":
   version "16.8.10"
   resolved "https://registry.npmjs.org/@types/react/-/react-16.8.10.tgz#1ccb6fde17f71a62ef055382ec68bdc379d4d8d9"
+  dependencies:
+    "@types/prop-types" "*"
+    csstype "^2.2.0"
+
+"@types/react@^16.8.15":
+  version "16.8.15"
+  resolved "https://registry.npmjs.org/@types/react/-/react-16.8.15.tgz#a76515fed5aa3e996603056f54427fec5f2a5122"
+  integrity sha512-dMhzw1rWK+wwJWvPp5Pk12ksSrm/z/C/+lOQbMZ7YfDQYnJ02bc0wtg4EJD9qrFhuxFrf/ywNgwTboucobJqQg==
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
@@ -1489,6 +1500,14 @@ aws-sign2@~0.7.0:
 aws4@^1.8.0:
   version "1.8.0"
   resolved "https://registry.npmjs.org/aws4/-/aws4-1.8.0.tgz#f0e003d9ca9e7f59c7a508945d7b2ef9a04a542f"
+
+axios@^0.18.0:
+  version "0.18.0"
+  resolved "https://registry.npmjs.org/axios/-/axios-0.18.0.tgz#32d53e4851efdc0a11993b6cd000789d70c05102"
+  integrity sha1-MtU+SFHv3AoRmTts0AB4nXDAUQI=
+  dependencies:
+    follow-redirects "^1.3.0"
+    is-buffer "^1.1.5"
 
 axobject-query@^2.0.1:
   version "2.0.2"
@@ -3756,7 +3775,7 @@ flush-write-stream@^1.0.0:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
 
-follow-redirects@^1.0.0:
+follow-redirects@^1.0.0, follow-redirects@^1.3.0:
   version "1.7.0"
   resolved "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.7.0.tgz#489ebc198dc0e7f64167bd23b03c4c19b5784c76"
   dependencies:
@@ -8274,6 +8293,13 @@ run-queue@^1.0.0, run-queue@^1.0.3:
 rxjs@^6.1.0, rxjs@^6.4.0:
   version "6.4.0"
   resolved "https://registry.npmjs.org/rxjs/-/rxjs-6.4.0.tgz#f3bb0fe7bda7fb69deac0c16f17b50b0b8790504"
+  dependencies:
+    tslib "^1.9.0"
+
+rxjs@^6.5.1:
+  version "6.5.1"
+  resolved "https://registry.npmjs.org/rxjs/-/rxjs-6.5.1.tgz#f7a005a9386361921b8524f38f54cbf80e5d08f4"
+  integrity sha512-y0j31WJc83wPu31vS1VlAFW5JGrnGC+j+TtGAa1fRQphy48+fDYiDmX8tjGloToEsMkxnouOg/1IzXGKkJnZMg==
   dependencies:
     tslib "^1.9.0"
 

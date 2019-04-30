@@ -4,7 +4,7 @@
  * Created Date: Wednesday April 3rd 2019
  * Author: Rick yang tongxue(🍔🍔) (origami@timvel.com)
  * -----
- * Last Modified: Thursday April 4th 2019 11:15:33 am
+ * Last Modified: Tuesday April 30th 2019 10:19:01 am
  * Modified By: Rick yang tongxue(🍔🍔) (origami@timvel.com)
  * -----
  */
@@ -15,17 +15,56 @@ import logoWrapper2 from '../../assets/logo_wrapper2.png';
 import playIcon from '../../assets/play.png';
 import logoCentre from '../../assets/logo_centre.png';
 import { Button } from '../../components';
+import Service from './landing.service';
+import { from, interval, timer } from 'rxjs';
+import { map, delay } from 'rxjs/operators';
+import Moment from 'moment';
 const songs = [
   'https://timvel-1.oss-cn-hangzhou.aliyuncs.com/musics/organ_variation.mp3',
   'https://timvel-1.oss-cn-hangzhou.aliyuncs.com/musics/space_song.mp3',
 ];
-class HomePage extends React.Component {
+const INITIAL_TEXTS = [
+  'Finally',
+  'This is my commitment',
+  'My modern manifesto',
+  `I'm doing it for all of us`,
+  'Who never got the chance',
+  'For all the ...',
+  'And all my birds of paradise',
+  'Who never got to fly at night',
+  `There's no more chasing rainbows`,
+  'And hoping for an end to them',
+  'Their arches are illusions',
+  'Solid at first glance',
+  'But then you try to touch them',
+  `There's nothing to hold on to`,
+  'The colors used to lure you in',
+  'And put you in a trance',
+];
+const precisionMap = (date: string, precision: string) => {
+  switch (precision) {
+    case 'day':
+      return Moment(date).format('dddd, LL');
+    case 'month':
+      return Moment(date).format('YYYY MMMM');
+    case 'year':
+      return Moment(date).format('YYYY');
+  }
+};
+const extractContent = (post: any) => {
+  return precisionMap(post.happenedAt, post.precision) + ' ' + post.content;
+};
+class HomePage extends React.Component<{}, IState> {
   songToPlay: string;
   audio?: HTMLAudioElement | null;
   play?: HTMLImageElement | null;
   constructor(props: any) {
     super(props);
     this.songToPlay = Math.random() > 0.5 ? songs[0] : songs[1];
+    this.state = {
+      texts: [...INITIAL_TEXTS],
+      currentIndex: 0,
+    };
   }
   componentDidMount() {
     this.audio = document.getElementById('audio') as HTMLAudioElement;
@@ -40,11 +79,45 @@ class HomePage extends React.Component {
       },
       false,
     );
+    this._fetchPosts();
+    this._startLoop();
   }
   _goToUrl = (url: string) => {
     window.open(url, '_blank');
   };
+  _startLoop = () => {
+    interval(5000)
+      .pipe(
+        delay(2500),
+        map(index => index + 1),
+        map(index => (index > this.state.texts.length - 1 ? 0 : index)),
+      )
+      .subscribe(currentIndex => this.setState({ currentIndex }));
+  };
+  _fetchPosts = () => {
+    from(Service.getAllPosts())
+      .pipe(
+        map(({ data }) => data),
+        map(data => data.map(extractContent)),
+      )
+      .subscribe({
+        next: _texts => {
+          const { texts, currentIndex } = this.state;
+          const nextTexts = texts.map(o => o);
+          nextTexts.splice(currentIndex + 1, 0, ..._texts);
+          this.setState({
+            texts: nextTexts,
+          });
+        },
+        error: err => {},
+      });
+  };
   render() {
+    const { texts, currentIndex } = this.state;
+    const currentText = texts[currentIndex];
+    const textStyle = {};
+    if (currentText.length > 20)
+      Object.assign(textStyle, { fontSize: '2.5em' });
     return (
       <div className={'container'}>
         <audio id={'audio'} src={this.songToPlay} autoPlay={true} />
@@ -54,7 +127,9 @@ class HomePage extends React.Component {
         </div>
         {this._renderLogo()}
 
-        <h3 className="title">{`I'm coming now ...`}</h3>
+        <h3 className="title" style={textStyle}>
+          {texts[currentIndex]}
+        </h3>
         {this._renderLegality()}
       </div>
     );
@@ -73,10 +148,24 @@ class HomePage extends React.Component {
     return (
       <div>
         <Button
+          onClick={() => this._goToUrl('https://timvel.com/aboutMe')}
+          style={styles.button}
+        >
+          About me
+        </Button>
+        <Button
           onClick={() => this._goToUrl('https://blog.timvel.com')}
           style={styles.button}
         >
           Blog
+        </Button>
+        <Button
+          onClick={() =>
+            this._goToUrl('https://itunes.apple.com/cn/app/id1461661373')
+          }
+          style={styles.button}
+        >
+          Download for Ios
         </Button>
         <Button
           onClick={() =>
@@ -121,7 +210,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   button: {
     backgroundColor: 'transparent',
     color: 'white',
-    border:0
+    border: 0,
   },
   topContainer: {
     position: 'absolute',
@@ -136,4 +225,8 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
 };
 
+interface IState {
+  texts: string[];
+  currentIndex: number;
+}
 export default HomePage;
