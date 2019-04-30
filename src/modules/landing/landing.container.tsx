@@ -4,7 +4,7 @@
  * Created Date: Wednesday April 3rd 2019
  * Author: Rick yang tongxue(🍔🍔) (origami@timvel.com)
  * -----
- * Last Modified: Tuesday April 30th 2019 10:53:44 am
+ * Last Modified: Tuesday April 30th 2019 3:11:45 pm
  * Modified By: Rick yang tongxue(🍔🍔) (origami@timvel.com)
  * -----
  */
@@ -12,7 +12,6 @@ import * as React from 'react';
 import './landing.css';
 import logoWrapper1 from '../../assets/logo_wrapper1.png';
 import logoWrapper2 from '../../assets/logo_wrapper2.png';
-import playIcon from '../../assets/play.png';
 import logoCentre from '../../assets/logo_centre.png';
 import { Button } from '../../components';
 import Service from './landing.service';
@@ -57,30 +56,16 @@ const extractContent = (post: any) => {
   return precisionMap(post.happenedAt, post.precision) + ' - ' + post.content;
 };
 class HomePage extends React.Component<{}, IState> {
-  songToPlay: string;
   audio?: HTMLAudioElement | null;
   play?: HTMLImageElement | null;
   constructor(props: any) {
     super(props);
-    this.songToPlay = Math.random() > 0.5 ? songs[0] : songs[1];
     this.state = {
       texts: [...INITIAL_TEXTS],
       currentIndex: 0,
     };
   }
   componentDidMount() {
-    this.audio = document.getElementById('audio') as HTMLAudioElement;
-    this.play = document.getElementById('play') as HTMLImageElement;
-    this.play.addEventListener('click', () => {
-      this.audio!.play();
-    });
-    document.addEventListener(
-      'WeixinJSBridgeReady',
-      () => {
-        this.audio!.play();
-      },
-      false,
-    );
     this._fetchPosts();
     this._startLoop();
   }
@@ -126,9 +111,7 @@ class HomePage extends React.Component<{}, IState> {
     }
     return (
       <div className={'container'}>
-        <audio id={'audio'} src={this.songToPlay} autoPlay={true} />
         <div style={styles.topContainer}>
-          <img id={'play'} style={styles.play} src={playIcon} />
           {this._renderButtons()}
         </div>
         {this._renderLogo()}
@@ -226,7 +209,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     margin: '0px 20px 0px 20px',
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
     alignItems: 'center',
   },
 };
