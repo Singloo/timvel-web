@@ -4,7 +4,7 @@
  * Created Date: Wednesday April 3rd 2019
  * Author: Rick yang tongxue(🍔🍔) (origami@timvel.com)
  * -----
- * Last Modified: Tuesday April 30th 2019 3:11:45 pm
+ * Last Modified: Monday May 6th 2019 12:15:15 pm
  * Modified By: Rick yang tongxue(🍔🍔) (origami@timvel.com)
  * -----
  */
@@ -111,9 +111,7 @@ class HomePage extends React.Component<{}, IState> {
     }
     return (
       <div className={'container'}>
-        <div style={styles.topContainer}>
-          {this._renderButtons()}
-        </div>
+        <div style={styles.topContainer}>{this._renderButtons()}</div>
         {this._renderLogo()}
 
         <h3 className="title" style={textStyle}>
@@ -154,7 +152,17 @@ class HomePage extends React.Component<{}, IState> {
           }
           style={styles.button}
         >
-          Download for Ios
+          App Store
+        </Button>
+        <Button
+          onClick={() =>
+            this._goToUrl(
+              'https://play.google.com/store/apps/details?id=com.timvel',
+            )
+          }
+          style={styles.button}
+        >
+          Google play
         </Button>
         <Button
           onClick={() =>
