@@ -41,11 +41,8 @@
 }
 .logo_container {
   flex-direction: column;
+  display: flex;
   width: 300px;
-  height: width;
-  /* position: absolute; */
-  padding: 0px;
-  background-color: red;
   margin-top: 10%;
   margin-left: auto;
   margin-right: auto;
@@ -55,6 +52,7 @@
   /* top: 0; */
   width: 300px;
   height: width;
+  margin: auto;
   align-self: center;
   transform: scale(1);
   animation: clockwise-spin infinite linear 15s;

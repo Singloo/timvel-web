@@ -10,7 +10,7 @@
  */
 let host = window.location.href
 if (process.env.NODE_ENV==='development') {
-  host = 'https://dev.timvel.com/';
+  host = 'https://timvel.com/';
 }
 
 export const HOST = host;

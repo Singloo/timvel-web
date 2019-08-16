@@ -65,10 +65,24 @@ class HomePage extends React.Component<{}, IState> {
       currentIndex: 0,
     };
   }
+  componentWillMount() {}
   componentDidMount() {
     this._fetchPosts();
     this._startLoop();
+    this._startCanvasAnimation();
   }
+  _startCanvasAnimation = () => {
+    const cans = document.createElement('canvas');
+    cans.width = 1365;
+    cans.height = 88;
+    cans.id = 'canvas';
+    cans.style.position = 'fixed';
+
+    const elm = document.createElement('script');
+    elm!.src = 'canvasController.js';
+    elm.type = 'text/javascript';
+    document.body.append(cans, elm);
+  };
   _goToUrl = (url: string) => {
     window.open(url, '_blank');
   };

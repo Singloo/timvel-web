@@ -31,3 +31,126 @@
     transform: rotate(360deg);
   }
 }
+
+.row-center {
+  display: flex;
+  flex-direction: row;
+}
+
+.row-center-space-between {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+h3 {
+  /* font-family: 'Courier New', Courier, monospace; */
+  font-weight: lighter;
+  font-size: 20px;
+  transition: all 1s linear;
+}
+
+h3.main:hover {
+  transition: all 0.3s linear;
+  /* text-shadow: 2px 2px 4px #61dafb; */
+  animation: color-change 1s linear 0s infinite;
+}
+
+h2 {
+  font-weight: lighter;
+  font-size: 25px;
+  transition: all 1s linear;
+}
+h2.main:hover {
+  transition: all 0.3s linear;
+  /* text-shadow: 2px 2px 4px #61dafb; */
+  animation: color-change 2s linear 0s infinite;
+}
+
+@keyframes color-change {
+  0% {
+    color: #EB8888;
+  }
+  10% {
+    color: #FF9D00;
+  }
+  20% {
+    color: #FFF300
+  }
+  30% {
+    color: #D8FF00;
+  }
+  40% {
+    color: #7AFE81;
+  }
+  50% {
+    color: #36FE92;
+  }
+  60% {
+    color: #36FED7;
+  }
+  70% {
+    color: #36DBFE;
+  }
+  80% {
+    color: #36ABFE;
+  }
+  90% {
+    color: #6B74FC;
+  }
+  100% {
+    color: #FC6BF6;
+  }
+}
+div.subtitle {
+  font-size: 14px;
+  font-weight: lighter;
+}
+.clickable {
+  cursor: pointer;
+}
+
+div.separator {
+  margin-top: 10px;
+  height: 5px;
+  padding-left: 13%;
+  padding-right: 13%;
+  animation: bk-color-change 8s linear 0s infinite;
+  box-sizing: border-box
+}
+
+@keyframes bk-color-change {
+  0% {
+    background-color: #EB8888;
+  }
+  10% {
+    background-color: #FF9D00;
+  }
+  20% {
+    background-color: #FFF300
+  }
+  30% {
+    background-color: #D8FF00;
+  }
+  40% {
+    background-color: #7AFE81;
+  }
+  50% {
+    background-color: #36FE92;
+  }
+  60% {
+    background-color: #36FED7;
+  }
+  70% {
+    background-color: #36DBFE;
+  }
+  80% {
+    background-color: #36ABFE;
+  }
+  90% {
+    background-color: #6B74FC;
+  }
+  100% {
+    background-color: #FC6BF6;
+  }
+}
