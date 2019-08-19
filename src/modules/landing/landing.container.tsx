@@ -17,6 +17,7 @@ import { Button } from '../../components';
 import Service from './landing.service';
 import { from, interval, timer } from 'rxjs';
 import { map, delay } from 'rxjs/operators';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import Moment from 'moment';
 const songs = [
   'https://timvel-1.oss-cn-hangzhou.aliyuncs.com/musics/organ_variation.mp3',
@@ -55,7 +56,7 @@ const precisionMap = (date: string, precision: string): string => {
 const extractContent = (post: any) => {
   return precisionMap(post.happenedAt, post.precision) + ' - ' + post.content;
 };
-class HomePage extends React.Component<{}, IState> {
+class HomePage extends React.Component<IProps, IState> {
   audio?: HTMLAudioElement | null;
   play?: HTMLImageElement | null;
   constructor(props: any) {
@@ -69,20 +70,20 @@ class HomePage extends React.Component<{}, IState> {
   componentDidMount() {
     this._fetchPosts();
     this._startLoop();
-    this._startCanvasAnimation();
+    // this._startCanvasAnimation();
   }
-  _startCanvasAnimation = () => {
-    const cans = document.createElement('canvas');
-    cans.width = 1365;
-    cans.height = 88;
-    cans.id = 'canvas';
-    cans.style.position = 'fixed';
+  // _startCanvasAnimation = () => {
+  //   const cans = document.createElement('canvas');
+  //   cans.width = 1365;
+  //   cans.height = 88;
+  //   cans.id = 'canvas';
+  //   cans.style.position = 'fixed';
 
-    const elm = document.createElement('script');
-    elm!.src = 'canvasController.js';
-    elm.type = 'text/javascript';
-    document.body.append(cans, elm);
-  };
+  //   const elm = document.createElement('script');
+  //   elm!.src = 'canvasController.js';
+  //   elm.type = 'text/javascript';
+  //   document.body.append(elm);
+  // };
   _goToUrl = (url: string) => {
     window.open(url, '_blank');
   };
@@ -112,6 +113,9 @@ class HomePage extends React.Component<{}, IState> {
         },
         error: err => {},
       });
+  };
+  _onPressAboutMe = () => {
+    this.props.history.push('/aboutMe');
   };
   render() {
     const { texts, currentIndex } = this.state;
@@ -148,10 +152,7 @@ class HomePage extends React.Component<{}, IState> {
   _renderButtons = () => {
     return (
       <div>
-        <Button
-          onClick={() => this._goToUrl('https://timvel.com/aboutMe')}
-          style={styles.button}
-        >
+        <Button onClick={this._onPressAboutMe} style={styles.button}>
           About me
         </Button>
         <Button
@@ -240,4 +241,5 @@ interface IState {
   texts: string[];
   currentIndex: number;
 }
-export default HomePage;
+interface IProps extends RouteComponentProps {}
+export default withRouter(HomePage);

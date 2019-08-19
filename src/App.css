@@ -67,39 +67,46 @@ h2.main:hover {
   animation: color-change 2s linear 0s infinite;
 }
 
+h4 {
+  font-weight: lighter;
+  font-size: 16px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 0px;
+}
 @keyframes color-change {
   0% {
-    color: #EB8888;
+    color: #eb8888;
   }
   10% {
-    color: #FF9D00;
+    color: #ff9d00;
   }
   20% {
-    color: #FFF300
+    color: #fff300;
   }
   30% {
-    color: #D8FF00;
+    color: #d8ff00;
   }
   40% {
-    color: #7AFE81;
+    color: #7afe81;
   }
   50% {
-    color: #36FE92;
+    color: #36fe92;
   }
   60% {
-    color: #36FED7;
+    color: #36fed7;
   }
   70% {
-    color: #36DBFE;
+    color: #36dbfe;
   }
   80% {
-    color: #36ABFE;
+    color: #36abfe;
   }
   90% {
-    color: #6B74FC;
+    color: #6b74fc;
   }
   100% {
-    color: #FC6BF6;
+    color: #fc6bf6;
   }
 }
 div.subtitle {
@@ -116,41 +123,41 @@ div.separator {
   padding-left: 13%;
   padding-right: 13%;
   animation: bk-color-change 8s linear 0s infinite;
-  box-sizing: border-box
+  box-sizing: border-box;
 }
 
 @keyframes bk-color-change {
   0% {
-    background-color: #EB8888;
+    background-color: #eb8888;
   }
   10% {
-    background-color: #FF9D00;
+    background-color: #ff9d00;
   }
   20% {
-    background-color: #FFF300
+    background-color: #fff300;
   }
   30% {
-    background-color: #D8FF00;
+    background-color: #d8ff00;
   }
   40% {
-    background-color: #7AFE81;
+    background-color: #7afe81;
   }
   50% {
-    background-color: #36FE92;
+    background-color: #36fe92;
   }
   60% {
-    background-color: #36FED7;
+    background-color: #36fed7;
   }
   70% {
-    background-color: #36DBFE;
+    background-color: #36dbfe;
   }
   80% {
-    background-color: #36ABFE;
+    background-color: #36abfe;
   }
   90% {
-    background-color: #6B74FC;
+    background-color: #6b74fc;
   }
   100% {
-    background-color: #FC6BF6;
+    background-color: #fc6bf6;
   }
 }

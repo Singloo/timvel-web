@@ -1,12 +1,49 @@
 import * as React from 'react';
 import './aboutMe.css';
 import service from './aboutMe.service';
-import {} from 'rxjs';
+import { interval } from 'rxjs';
 import {} from 'rxjs/operators';
 import { IStyle } from '../../models';
-import { Icon } from 'antd';
+import { withRouter, RouteComponentProps } from 'react-router';
+import { goToUrl } from '../../utils';
+import { ContactRow, CodeExpRow } from './components';
+import Moment from 'moment';
+
 const ZhMd = require('./assets/me_zh.md');
 const EnMd = require('./assets/me_en.md');
+const convertSec = (
+  secs: number,
+  {
+    y,
+    m,
+    d,
+    h,
+    min,
+    s,
+  }: { y: string; m: string; d: string; h: string; min: string; s: string },
+) => {
+  const MINUTE = 60;
+  const HOUR = 3600;
+  const DAY = 86400;
+  const MONTH = 2592000;
+  const YEAR = 31536000;
+  const year = Math.floor(secs / YEAR);
+  const month = Math.floor((secs % YEAR) / MONTH);
+  const day = Math.floor(((secs % YEAR) % MONTH) / DAY);
+  const hour = Math.floor((((secs % YEAR) % MONTH) % DAY) / HOUR);
+  const minute = Math.floor(((((secs % YEAR) % MONTH) % DAY) % HOUR) / MINUTE);
+  const sec = ((((secs % YEAR) % MONTH) % DAY) % HOUR) % MINUTE;
+  const construct = (num: number, unit: string) =>
+    num + ' ' + (num <= 1 ? unit.replace(/s$/, '') : unit);
+  return [
+    construct(year, y),
+    construct(month, m),
+    construct(day, d),
+    // construct(hour, h),
+    // construct(minute, min),
+    construct(sec, s),
+  ].join(' ');
+};
 const capitalFirstChar = (str: string) =>
   str.replace(/^\w/, e => e.toUpperCase());
 const getSelectText = () => {
@@ -22,7 +59,11 @@ const getSelectText = () => {
 };
 const HIDDEN_TEXT = '你要干嘛啊???';
 const DISPLAY_TEXT = '████████';
-class HomePage extends React.Component<{}, IState> {
+const FIRST_CODING = Moment('2016-10-18');
+const FIRST_INTERNSHIP = Moment('2018-01-03');
+const FIRST_JOB = Moment('2018-06-23');
+
+class HomePage extends React.Component<IProps, IState> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -36,18 +77,20 @@ class HomePage extends React.Component<{}, IState> {
     this._queryMd('zh');
     const elm = document.getElementById('phone-number') as HTMLDivElement;
     elm.onmousemove = this._onSelectPhoneNumber;
-    document.onclick = () => {
-      const { start, end } = getSelectText()!;
-      if (start === 0 && end === 0) {
-        const { selectStart, selectEnd } = this.state;
-        if (selectStart === 0 && selectEnd === 0) return;
-        this.setState({
-          selectStart: 0,
-          selectEnd: 0,
-        });
-      }
-    };
+    document.onclick = this._resetSelection;
+    interval(1000).subscribe(() => this.forceUpdate());
   }
+  _resetSelection = () => {
+    const { start, end } = getSelectText()!;
+    if (start === 0 && end === 0) {
+      const { selectStart, selectEnd } = this.state;
+      if (selectStart === 0 && selectEnd === 0) return;
+      this.setState({
+        selectStart: 0,
+        selectEnd: 0,
+      });
+    }
+  };
   _onSelectPhoneNumber = (e: MouseEvent) => {
     if (window.getSelection) {
       const { start, end, selectedText } = getSelectText()!;
@@ -76,6 +119,12 @@ class HomePage extends React.Component<{}, IState> {
       })
       .catch(err => console.log(err));
   };
+  _goToBlog = () => {
+    goToUrl('https://blog.timvel.com');
+  };
+  _goToGithub = () => {
+    goToUrl('https://github.com/Singloo');
+  };
   render() {
     return (
       <div
@@ -99,13 +148,12 @@ class HomePage extends React.Component<{}, IState> {
   }
   _renderHeader = () => {
     return (
-      <div
-        className="row-center row-center-space-between"
-        // style={{ paddingRight: '10%', paddingLeft: '10%' }}
-      >
+      <div className="row-center row-center-space-between">
         {this._renderH2MainByEach('TIMVEL', true)}
         <div className="row-center">
-          <h2 className="main clickable">blog</h2>
+          <h2 className="main clickable" onClick={this._goToBlog}>
+            blog
+          </h2>
           <h2 className="main space-horizontal">/</h2>
           <h2 className="main clickable" onClick={this._switchLang}>
             {capitalFirstChar(this.state.lang)}
@@ -134,52 +182,59 @@ class HomePage extends React.Component<{}, IState> {
         <div className="subtitle" style={{ display: 'flex' }}>
           {service.getText(lang).name}
         </div>
-        <div
-          className="row-center"
-          style={{ display: 'flex', marginTop: 5, marginBottom: 5 }}
-        >
-          <Icon
-            type={'mail'}
-            style={{
-              fontWeight: 'lighter',
-              marginTop: 1,
-              marginRight: 3,
-              fontSize: 16,
-            }}
-          />
-          <div className="subtitle">Email: q@timvel.com</div>
-        </div>
-        <div className="row-center">
-          <Icon
-            type={'phone'}
-            style={{
-              fontWeight: 'lighter',
-              marginTop: 1,
-              marginRight: 3,
-              fontSize: 16,
-            }}
-          />
-          <div id="phone-number" className="subtitle clickable">
-            {text}
-          </div>
-        </div>
-        <div className="row-center" style={{ display: 'flex', marginTop: 5 }}>
-          <Icon
-            type={'wechat'}
-            style={{
-              fontWeight: 'lighter',
-              marginTop: 1,
-              marginRight: 3,
-              fontSize: 17,
-            }}
-          />
-          <div id="phone-number" className="subtitle">
-            {'qingloo8005'}
-          </div>
-        </div>
+        <ContactRow iconType={'mail'} text={'q@timvel.com'} />
+        <ContactRow
+          iconType={'phone'}
+          text={text}
+          textId={'phone-number'}
+          onClick={() => {}}
+        />
+        <ContactRow
+          iconType={'wechat'}
+          text={'qingloo8005'}
+          iconStyle={{ fontSize: 17 }}
+        />
+        <ContactRow
+          iconType={'github'}
+          text={'https://github.com/Singloo'}
+          onClick={this._goToGithub}
+        />
+        {this._renderCodingExp()}
       </div>
     );
   };
+  _renderCodingExp = () => {
+    return (
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+        }}
+      >
+        <h4>{service.getText(this.state.lang).codingExp}</h4>
+        <CodeExpRow
+          title={'从第一次编程开始'}
+          subtitle={convertSec(Moment().diff(FIRST_CODING, 's'), {
+            ...service.getText(this.state.lang).unit,
+          })}
+        />
+        <CodeExpRow
+          title={'从实习开始'}
+          subtitle={convertSec(Moment().diff(FIRST_INTERNSHIP, 's'), {
+            ...service.getText(this.state.lang).unit,
+          })}
+        />
+        <CodeExpRow
+          title={'从第一份工作开始'}
+          subtitle={convertSec(Moment().diff(FIRST_JOB, 's'), {
+            ...service.getText(this.state.lang).unit,
+          })}
+        />
+      </div>
+    );
+  };
+
   _renderSeparator = () => {
     return <div className="separator" />;
   };
@@ -204,4 +259,5 @@ interface IState {
   selectStart: number;
   selectEnd: number;
 }
-export default HomePage;
+interface IProps extends RouteComponentProps {}
+export default withRouter(HomePage);
