@@ -6,7 +6,7 @@ import {} from 'rxjs/operators';
 import { IStyle } from '../../models';
 import { withRouter, RouteComponentProps } from 'react-router';
 import { goToUrl } from '../../utils';
-import { ContactRow, CodeExpRow } from './components';
+import { ContactRow, CodeExpRow, Button } from './components';
 import Moment from 'moment';
 
 const ZhMd = require('./assets/me_zh.md');
@@ -63,6 +63,12 @@ const FIRST_CODING = Moment('2016-10-18');
 const FIRST_INTERNSHIP = Moment('2018-01-03');
 const FIRST_JOB = Moment('2018-06-23');
 
+const ZH_LEARN_MORE = [
+  '擅长直觉修Bug',
+  '擅长于大型犬格斗',
+  '2013年 sd敢达 阿纳海姆',
+];
+const EN_LEARN_MORE: string[] = [];
 class HomePage extends React.Component<IProps, IState> {
   constructor(props: any) {
     super(props);
@@ -71,6 +77,8 @@ class HomePage extends React.Component<IProps, IState> {
       md: undefined,
       selectStart: 0,
       selectEnd: 0,
+      zhLearnMore: 0,
+      enLearnMore: 0,
     };
   }
   componentDidMount() {
@@ -125,6 +133,19 @@ class HomePage extends React.Component<IProps, IState> {
   _goToGithub = () => {
     goToUrl('https://github.com/Singloo');
   };
+  get i18n() {
+    return service.getText(this.state.lang);
+  }
+  _onPressLearnMore = () => {
+    const { lang, zhLearnMore, enLearnMore } = this.state;
+    const isZh = lang === 'zh';
+    const total = isZh ? ZH_LEARN_MORE.length : EN_LEARN_MORE.length;
+    const key = isZh ? 'zhLearnMore' : 'enLearnMore';
+    const current = isZh ? zhLearnMore : enLearnMore;
+    this.setState({
+      [key]: Math.min(total, current + 1),
+    } as any);
+  };
   render() {
     return (
       <div
@@ -138,11 +159,13 @@ class HomePage extends React.Component<IProps, IState> {
         {this._renderContacts()}
         {this._renderSeparator()}
         <article
-          style={{ display: 'flex' }}
+          style={{ textAlign: 'start' }}
           dangerouslySetInnerHTML={
             this.state.md ? { __html: this.state.md } : undefined
           }
         />
+        {this._renderLearnMore()}
+        {this._renderLearnMoreBtn()}
       </div>
     );
   }
@@ -156,7 +179,7 @@ class HomePage extends React.Component<IProps, IState> {
           </h2>
           <h2 className="main space-horizontal">/</h2>
           <h2 className="main clickable" onClick={this._switchLang}>
-            {capitalFirstChar(this.state.lang)}
+            {capitalFirstChar(this.state.lang === 'zh' ? 'en' : 'zh')}
           </h2>
         </div>
       </div>
@@ -196,7 +219,7 @@ class HomePage extends React.Component<IProps, IState> {
         />
         <ContactRow
           iconType={'github'}
-          text={'https://github.com/Singloo'}
+          text={'github.com/Singloo'}
           onClick={this._goToGithub}
         />
         {this._renderCodingExp()}
@@ -212,23 +235,23 @@ class HomePage extends React.Component<IProps, IState> {
           alignItems: 'flex-start',
         }}
       >
-        <h4>{service.getText(this.state.lang).codingExp}</h4>
+        <h4>{this.i18n.codingExp}</h4>
         <CodeExpRow
           title={'从第一次编程开始'}
           subtitle={convertSec(Moment().diff(FIRST_CODING, 's'), {
-            ...service.getText(this.state.lang).unit,
+            ...this.i18n.unit,
           })}
         />
         <CodeExpRow
           title={'从实习开始'}
           subtitle={convertSec(Moment().diff(FIRST_INTERNSHIP, 's'), {
-            ...service.getText(this.state.lang).unit,
+            ...this.i18n.unit,
           })}
         />
         <CodeExpRow
           title={'从第一份工作开始'}
           subtitle={convertSec(Moment().diff(FIRST_JOB, 's'), {
-            ...service.getText(this.state.lang).unit,
+            ...this.i18n.unit,
           })}
         />
       </div>
@@ -249,6 +272,34 @@ class HomePage extends React.Component<IProps, IState> {
       </div>
     );
   };
+  _renderLearnMore = () => {
+    const { lang, zhLearnMore, enLearnMore } = this.state;
+    const isZh = lang === 'zh';
+    const total = isZh ? ZH_LEARN_MORE : EN_LEARN_MORE;
+    const current = isZh ? zhLearnMore : enLearnMore;
+    return (
+      <div>
+        {total.slice(0, current).map(str => (
+          <p>{str}</p>
+        ))}
+      </div>
+    );
+  };
+  _renderLearnMoreBtn = () => {
+    const { lang, zhLearnMore, enLearnMore } = this.state;
+    const isZh = lang === 'zh';
+    const total = isZh ? ZH_LEARN_MORE.length : EN_LEARN_MORE.length;
+    const current = isZh ? zhLearnMore : enLearnMore;
+    if (current >= total) return;
+    return (
+      <Button
+        onClick={this._onPressLearnMore}
+        style={{ marginTop: 10, marginBottom: 10 }}
+      >
+        {this.i18n.learnMore}
+      </Button>
+    );
+  };
 }
 
 const styles: IStyle = {};
@@ -258,6 +309,8 @@ interface IState {
   md: undefined | string;
   selectStart: number;
   selectEnd: number;
+  zhLearnMore: number;
+  enLearnMore: number;
 }
 interface IProps extends RouteComponentProps {}
 export default withRouter(HomePage);

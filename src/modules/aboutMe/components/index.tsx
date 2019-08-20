@@ -51,3 +51,15 @@ export function CodeExpRow({
     </div>
   );
 }
+
+export function Button({
+  children,
+  onClick,
+  style
+}: {
+  children: React.ReactChild;
+  onClick?: () => void;
+  style?:React.CSSProperties
+}) {
+  return <button onClick={onClick} style={style}>{children}</button>;
+}

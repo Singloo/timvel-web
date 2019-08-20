@@ -12,6 +12,7 @@ const TEXTS = {
       min: '分钟',
       s: '秒',
     },
+    learnMore: '了解更多',
   },
   en: {
     name: 'Rick Sanchez',
@@ -24,6 +25,7 @@ const TEXTS = {
       min: 'minutes',
       s: 'seconds',
     },
+    learnMore: 'learn more',
   },
 };
 class TemplateService {
