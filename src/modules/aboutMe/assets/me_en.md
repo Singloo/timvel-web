@@ -4,7 +4,6 @@ A full-stack developer on top of javascript, mainly do `React Native`,
 <br/>
 I can build a complete App by using`React Native`, `nodeJs`, `express`, `postgreSql`, `nginx`, `docker`. (see my github page).
 <br/>I like `rxjs`, using a lot in my work. I also like `currying`.
-<br/>
 
 ## Experience
 
@@ -93,3 +92,6 @@ Timvel, A full stack app that I finished independently, contains almost all my s
 Find code on [github](https://github.com/Singloo/timvel),download app on [timvel.com](https://timvel.com)
 
 There is also a project that I developed earlier, I don't maintain it anymore, you can find it on my App store profile page.
+
+
+~~~Some people may think that I know too much and I'm not proficient in any skill. I think it only shows that I spent more time on study.~~~

@@ -2,7 +2,6 @@
 
 基于 javascript 的开发者, 主要做`react native`, 可以使用`nodeJs`, `express`, `postgreSql`, `nginx`, `docker` 搭建一个完整的 app.(见 github)
 <br/>喜欢`rxjs`.在项目中经常使用.喜欢`currying`
-<br/>
 
 ## 工作经历
 
@@ -94,3 +93,6 @@ Timvel, 一个由我独立完成的全栈 app, 基本上用到了所有我会的
 代码见[github](https://github.com/Singloo/timvel),下载见网站[timvel.com](https://timvel.com)
 
 还有一个我早期开发的项目,不再维护, 可以见 app store 我的开发者页面
+
+
+~~~有的人可能会觉得我懂得太多,什么都不精通. 我觉得这只能说明我花了更多的时间去学习, 还能说明什么?~~~
