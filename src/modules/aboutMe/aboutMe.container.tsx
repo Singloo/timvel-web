@@ -8,6 +8,7 @@ import { withRouter, RouteComponentProps } from 'react-router';
 import { goToUrl } from '../../utils';
 import { ContactRow, CodeExpRow, Button } from './components';
 import Moment from 'moment';
+import '../../App.css';
 const ZhMd = require('./assets/me_zh.md');
 const EnMd = require('./assets/me_en.md');
 const convertSec = (
@@ -163,13 +164,7 @@ class HomePage extends React.Component<IProps, IState> {
   };
   render() {
     return (
-      <div
-        style={{
-          paddingRight: '10%',
-          paddingLeft: '10%',
-          paddingBottom: 50,
-        }}
-      >
+      <div className="am-container">
         {this._renderHeader()}
         {this._renderContacts()}
         {this._renderSeparator()}

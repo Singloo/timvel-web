@@ -29,7 +29,7 @@ const TEXTS = {
       s: 'seconds',
     },
     learnMore: 'learn more',
-    fromFirstCoding: 'From my first programming',
+    fromFirstCoding: 'From my first coding',
     fromFirstInternship: 'From my internship',
     fromFirstJob: 'From my first job',
   },

@@ -1,6 +1,6 @@
 ## 概要
 
-基于 javascript 的开发者, 主要做`react native`, 可以使用`nodeJs`,`express`,`postgreSql`,`nginx`,`docker`搭建一个完整的 app.(见 github)
+基于 javascript 的开发者, 主要做`react native`, 可以使用`nodeJs`, `express`, `postgreSql`, `nginx`, `docker` 搭建一个完整的 app.(见 github)
 <br/>喜欢`rxjs`.在项目中经常使用.喜欢`currying`
 <br/>
 
@@ -61,11 +61,11 @@ CTO 离职,我负责维护 app [Eduogra](https://itunes.apple.com/cn/app/id12533
 >
 > ### 后端开发
 >
-> `nodeJs`,`postgreSql`,`docker`,`express`,`nginx`
+> `nodeJs`, `postgreSql`, `docker`, `express`, `nginx`
 >
 > ### 其他技能
 >
-> `Regular Expression`,`Python`, `chai Js`, `mocha`...
+> `Regular Expression`, `Python`, `Flask`, `chai Js`, `mocha`...
 
 ## 教育
 

@@ -1,6 +1,8 @@
 ## Summary
 
-A full-stack developer on top of javascript, mainly do `React Native`, I can build a complete App by using`React Native`,`nodeJs`,`express`,`postgreSql`,`nginx`,`docker`. (see my github page).
+A full-stack developer on top of javascript, mainly do `React Native`,
+<br/>
+I can build a complete App by using`React Native`, `nodeJs`, `express`, `postgreSql`, `nginx`, `docker`. (see my github page).
 <br/>I like `rxjs`, using a lot in my work. I also like `currying`.
 <br/>
 
@@ -26,6 +28,7 @@ The difficulties of the App are:
 - Process video and generate review
 
 About the back end of this project:
+
 - The recording sdk we use needs to be complied. To avoid recompiling every time when restarting the docker container, I built a docker image.
 - The whole video processing has many steps,each step may fail,for some errors,I use `rxjs` `retryWhen` to retry.
 
@@ -57,7 +60,7 @@ React native intern.
 >
 > ### Back-end development
 >
-> `nodeJs`,`postgreSql`,`docker`,`express`,`nginx`
+> `nodeJs`, `postgreSql`, `docker`, `express`, `nginx`
 >
 > ### Other skills
 >
