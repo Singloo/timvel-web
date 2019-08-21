@@ -8,7 +8,6 @@ import { withRouter, RouteComponentProps } from 'react-router';
 import { goToUrl } from '../../utils';
 import { ContactRow, CodeExpRow, Button } from './components';
 import Moment from 'moment';
-
 const ZhMd = require('./assets/me_zh.md');
 const EnMd = require('./assets/me_en.md');
 const convertSec = (
@@ -30,8 +29,8 @@ const convertSec = (
   const year = Math.floor(secs / YEAR);
   const month = Math.floor((secs % YEAR) / MONTH);
   const day = Math.floor(((secs % YEAR) % MONTH) / DAY);
-  const hour = Math.floor((((secs % YEAR) % MONTH) % DAY) / HOUR);
-  const minute = Math.floor(((((secs % YEAR) % MONTH) % DAY) % HOUR) / MINUTE);
+  // const hour = Math.floor((((secs % YEAR) % MONTH) % DAY) / HOUR);
+  // const minute = Math.floor(((((secs % YEAR) % MONTH) % DAY) % HOUR) / MINUTE);
   const sec = ((((secs % YEAR) % MONTH) % DAY) % HOUR) % MINUTE;
   const construct = (num: number, unit: string) =>
     num + ' ' + (num <= 1 ? unit.replace(/s$/, '') : unit);
@@ -66,9 +65,15 @@ const FIRST_JOB = Moment('2018-06-23');
 const ZH_LEARN_MORE = [
   '擅长直觉修Bug',
   '擅长于大型犬格斗',
-  '2013年 sd敢达 阿纳海姆',
+  '2016,04,19   吃了一朵毒蘑菇,看见世界在闪烁',
+  '2014-2017    看了很多书',
 ];
-const EN_LEARN_MORE: string[] = [];
+const EN_LEARN_MORE: string[] = [
+  'Good at fixing bugs with intuition',
+  'Good at fighting with large dogs',
+  '2016,04,19   I ate psilocybin, saw the world flashing',
+  '2014-2017   I read a lot of books.',
+];
 class HomePage extends React.Component<IProps, IState> {
   constructor(props: any) {
     super(props);
@@ -82,12 +87,20 @@ class HomePage extends React.Component<IProps, IState> {
     };
   }
   componentDidMount() {
-    this._queryMd('zh');
+    this._checkLang();
     const elm = document.getElementById('phone-number') as HTMLDivElement;
     elm.onmousemove = this._onSelectPhoneNumber;
     document.onclick = this._resetSelection;
     interval(1000).subscribe(() => this.forceUpdate());
   }
+  _checkLang = () => {
+    const lang = (navigator.language || '').substr(0, 2) === 'zh' ? 'zh' : 'en';
+    this._queryMd(lang);
+    if (lang !== 'zh')
+      this.setState({
+        lang,
+      });
+  };
   _resetSelection = () => {
     const { start, end } = getSelectText()!;
     if (start === 0 && end === 0) {
@@ -113,8 +126,10 @@ class HomePage extends React.Component<IProps, IState> {
   };
 
   _switchLang = () => {
+    const nextLang = this.state.lang === 'zh' ? 'en' : 'zh';
+    this._queryMd(nextLang);
     this.setState({
-      lang: this.state.lang === 'zh' ? 'en' : 'zh',
+      lang: nextLang,
     });
   };
   _queryMd = (lang: 'zh' | 'en') => {
@@ -149,10 +164,10 @@ class HomePage extends React.Component<IProps, IState> {
   render() {
     return (
       <div
-        // className={'container'}
         style={{
           paddingRight: '10%',
           paddingLeft: '10%',
+          paddingBottom: 50,
         }}
       >
         {this._renderHeader()}
@@ -237,19 +252,19 @@ class HomePage extends React.Component<IProps, IState> {
       >
         <h4>{this.i18n.codingExp}</h4>
         <CodeExpRow
-          title={'从第一次编程开始'}
+          title={this.i18n.fromFirstCoding}
           subtitle={convertSec(Moment().diff(FIRST_CODING, 's'), {
             ...this.i18n.unit,
           })}
         />
         <CodeExpRow
-          title={'从实习开始'}
+          title={this.i18n.fromFirstInternship}
           subtitle={convertSec(Moment().diff(FIRST_INTERNSHIP, 's'), {
             ...this.i18n.unit,
           })}
         />
         <CodeExpRow
-          title={'从第一份工作开始'}
+          title={this.i18n.fromFirstJob}
           subtitle={convertSec(Moment().diff(FIRST_JOB, 's'), {
             ...this.i18n.unit,
           })}
@@ -278,9 +293,9 @@ class HomePage extends React.Component<IProps, IState> {
     const total = isZh ? ZH_LEARN_MORE : EN_LEARN_MORE;
     const current = isZh ? zhLearnMore : enLearnMore;
     return (
-      <div>
+      <div style={{ marginTop: 30 }}>
         {total.slice(0, current).map(str => (
-          <p>{str}</p>
+          <p className="learn-more">{str}</p>
         ))}
       </div>
     );
@@ -290,13 +305,13 @@ class HomePage extends React.Component<IProps, IState> {
     const isZh = lang === 'zh';
     const total = isZh ? ZH_LEARN_MORE.length : EN_LEARN_MORE.length;
     const current = isZh ? zhLearnMore : enLearnMore;
-    if (current >= total) return;
+    const noMore = current >= total;
     return (
       <Button
-        onClick={this._onPressLearnMore}
+        onClick={noMore ? undefined : this._onPressLearnMore}
         style={{ marginTop: 10, marginBottom: 10 }}
       >
-        {this.i18n.learnMore}
+        {noMore ? '到此为止了' : this.i18n.learnMore}
       </Button>
     );
   };

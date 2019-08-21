@@ -46,7 +46,7 @@ export function CodeExpRow({
 }) {
   return (
     <div className="subtitle row-center">
-      <div style={{ width: 130, textAlign: 'start' }}>{title}</div>
+      <div style={{ width: 190, textAlign: 'start' }}>{title}</div>
       {subtitle}
     </div>
   );

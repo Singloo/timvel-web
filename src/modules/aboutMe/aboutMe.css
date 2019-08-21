@@ -2,3 +2,11 @@
   margin-left: 10px;
   margin-right: 10px;
 }
+
+p.learn-more {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: #cfd8dc;
+  color: #446f7a;
+  margin: 0px;
+}

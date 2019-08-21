@@ -13,6 +13,9 @@ const TEXTS = {
       s: '秒',
     },
     learnMore: '了解更多',
+    fromFirstCoding: '从第一次编程开始',
+    fromFirstInternship: '从实习开始',
+    fromFirstJob: '从工作开始',
   },
   en: {
     name: 'Rick Sanchez',
@@ -26,6 +29,9 @@ const TEXTS = {
       s: 'seconds',
     },
     learnMore: 'learn more',
+    fromFirstCoding: 'From my first programming',
+    fromFirstInternship: 'From my internship',
+    fromFirstJob: 'From my first job',
   },
 };
 class TemplateService {
