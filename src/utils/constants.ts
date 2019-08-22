@@ -8,8 +8,8 @@
  * Modified By: Rick yang tongxue(🍔🍔) (origami@timvel.com)
  * -----
  */
-let host = window.location.href
-if (process.env.NODE_ENV==='development') {
+let host = 'https://' + window.location.host;
+if (process.env.NODE_ENV === 'development') {
   host = 'https://timvel.com/';
 }
 

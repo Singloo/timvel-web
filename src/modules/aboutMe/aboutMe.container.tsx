@@ -125,7 +125,14 @@ class HomePage extends React.Component<IProps, IState> {
       });
     }
   };
-
+  _goToLinkedIn = () => {
+    goToUrl(
+      'https://www.linkedin.com/in/rick-%E6%9D%A8%E5%90%8C%E5%AD%A6-17a2b4158',
+    );
+  };
+  _goToHomePage = () => {
+    goToUrl('http://' + window.location.host);
+  };
   _switchLang = () => {
     const nextLang = this.state.lang === 'zh' ? 'en' : 'zh';
     this._queryMd(nextLang);
@@ -182,7 +189,9 @@ class HomePage extends React.Component<IProps, IState> {
   _renderHeader = () => {
     return (
       <div className="row-center row-center-space-between">
-        {this._renderH2MainByEach('TIMVEL', true)}
+        <div onClick={this._goToHomePage}>
+          {this._renderH2MainByEach('TIMVEL', true)}
+        </div>
         <div className="row-center">
           <h2 className="main clickable" onClick={this._goToBlog}>
             blog
@@ -231,6 +240,11 @@ class HomePage extends React.Component<IProps, IState> {
           iconType={'github'}
           text={'github.com/Singloo'}
           onClick={this._goToGithub}
+        />
+        <ContactRow
+          iconType={'linkedin'}
+          text={'linkedIn'}
+          onClick={this._goToLinkedIn}
         />
         {this._renderCodingExp()}
       </div>
