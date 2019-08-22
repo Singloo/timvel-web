@@ -64,7 +64,10 @@ CTO 离职,我负责维护 app [Eduogra](https://itunes.apple.com/cn/app/id12533
 >
 > ### 其他技能
 >
-> `Regular Expression`, `Python`, `Flask`, `chai Js`, `mocha`...
+> `Regular Expression` ,
+> <br/>
+> (不是很熟练的)
+> <br/> [ `Python`, `Flask`, `chaiJs`, `mocha`... ]
 
 ## 教育
 
@@ -93,6 +96,5 @@ Timvel, 一个由我独立完成的全栈 app, 基本上用到了所有我会的
 代码见[github](https://github.com/Singloo/timvel),下载见网站[timvel.com](https://timvel.com)
 
 还有一个我早期开发的项目,不再维护, 可以见 app store 我的开发者页面
-
 
 ~~~有的人可能会觉得我懂得太多,什么都不精通. 我觉得这只能说明我花了更多的时间去学习, 还能说明什么?~~~
