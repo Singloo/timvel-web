@@ -10,8 +10,8 @@
  */
 let host = 'https://' + window.location.host;
 if (process.env.NODE_ENV === 'development') {
-  host = 'https://timvel.com/';
+  host = 'https://timvel.com';
 }
 
 export const HOST = host;
-export const API_V1 = host + 'api/v1';
+export const API_V1 = host + '/api/v1';
