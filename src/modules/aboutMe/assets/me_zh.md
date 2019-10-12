@@ -1,4 +1,4 @@
-## 概要
+## 概要 (2019-08-22)
 
 基于 javascript 的开发者, 主要做`react native`, 可以使用`nodeJs`, `express`, `postgreSql`, `nginx`, `docker` 搭建一个完整的 app.(见 github)
 <br/>喜欢`rxjs`.在项目中经常使用.喜欢`currying`
