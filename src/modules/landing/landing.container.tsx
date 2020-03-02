@@ -196,7 +196,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     alignSelf: 'center',
   },
   legality: {
-    textAlign: 'end',
+    textAlign: 'center',
     position: 'absolute',
     bottom: 5,
     left: 0,
