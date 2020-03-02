@@ -155,35 +155,24 @@ class HomePage extends React.Component<IProps, IState> {
         <Button onClick={this._onPressAboutMe} style={styles.button}>
           About me
         </Button>
-        <Button
-          onClick={() => this._goToUrl('https://blog.timvel.com')}
-          style={styles.button}
-        >
+        <Button onClick={() => this._goToUrl('https://blog.timvel.com')} style={styles.button}>
           Blog
         </Button>
         <Button
-          onClick={() =>
-            this._goToUrl('https://itunes.apple.com/cn/app/id1461661373')
-          }
+          onClick={() => this._goToUrl('https://itunes.apple.com/cn/app/id1461661373')}
           style={styles.button}
         >
           App Store
         </Button>
         <Button
-          onClick={() =>
-            this._goToUrl(
-              'https://play.google.com/store/apps/details?id=com.timvel',
-            )
-          }
+          onClick={() => this._goToUrl('https://play.google.com/store/apps/details?id=com.timvel')}
           style={styles.button}
         >
           Google play
         </Button>
         <Button
           onClick={() =>
-            this._goToUrl(
-              'https://timvel-downloads.oss-cn-hangzhou.aliyuncs.com/timvel-latest.apk',
-            )
+            this._goToUrl('https://timvel-downloads.oss-cn-hangzhou.aliyuncs.com/timvel-latest.apk')
           }
           style={styles.button}
         >
@@ -194,7 +183,7 @@ class HomePage extends React.Component<IProps, IState> {
   };
   _renderLegality = () => {
     return (
-      <a href={'http://www.jsca.gov.cn'}>
+      <a href={'http://www.beian.miit.gov.cn'} target={'_blank'}>
         <h6 style={styles.legality}>苏ICP备18024360号</h6>
       </a>
     );
