@@ -201,7 +201,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     bottom: 5,
     left: 0,
     right: 10,
-    fontSize: 8,
+    fontSize: 12,
     color: '#cccccc',
   },
   play: {
