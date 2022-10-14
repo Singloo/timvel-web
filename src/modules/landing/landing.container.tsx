@@ -183,7 +183,7 @@ class HomePage extends React.Component<IProps, IState> {
   };
   _renderLegality = () => {
     return (
-      <a href={'http://www.beian.miit.gov.cn'} target={'_blank'}>
+      <a href={'https://beian.miit.gov.cn/'} target={'_blank'}>
         <h6 style={styles.legality}>苏ICP备18024360号</h6>
       </a>
     );
